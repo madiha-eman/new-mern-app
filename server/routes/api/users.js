@@ -89,14 +89,16 @@ router.post('update/:id', async (req, res) => {
 
 })
 router.delete('/:id', async (req, res) => {
+  console.log(req.body)
   try {
     const user = await User.findByIdAndDelete(req.params.id);
     res.json({
       success: true,
       status: 200, //ok
-      msg: 'post is deleted successfully'
+      data:user.id,
+      msg: 'user is deleted successfully'
     })
-
+ console.log('dele', user)
   } catch (error) {
     console.log(error)
   }

@@ -5,12 +5,14 @@ const router = express.Router()
 
 router.get('/', async (req, res) => {
     // get posts from posts
+    
     const posts = await Post.find().sort({createdAt:-1});
         res.json({
         success: true,
         status: 200, //ok
         data: posts
     })
+    console.log(posts)
 
 })
 router.post('/add',auth, async (req, res) => {
@@ -62,6 +64,7 @@ router.delete('/:id', async (req, res) => {
     res.json({
         success: true,
         status: 200, //ok
+        data: post,
         msg: 'post is deleted successfully'
     })
    

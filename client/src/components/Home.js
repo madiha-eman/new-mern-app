@@ -3,6 +3,9 @@ import axios from 'axios';
 import PostsUi from "./Posts/PostsUI";
 import { useEffect, useState } from "react";
 import { Grid } from "@material-ui/core";
+import Corona from "./Corona";
+import Headings from "./Heading";
+
 
 function Home() {
   const [state, setstate] = useState([]);
@@ -21,10 +24,15 @@ function Home() {
   return (
 
     <div>
-      <Grid container spacing={3}>
+      <Corona/>
+      <Headings/>
+      <Grid container >
+        
         {state.map((item, index) => (
           <Grid item xs={12} md={6} lg={4}>
-            <PostsUi item={item} index={index} />
+            <PostsUi
+            item={item} index={index}
+             />
           </Grid>
         )
         )}

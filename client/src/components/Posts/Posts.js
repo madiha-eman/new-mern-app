@@ -19,12 +19,12 @@ const dispatch = useDispatch()
     console.log(id)
     axios.delete('http://localhost:4000/api/posts/'+id)
     .then((res) => {
-      console.log(res.data);
+      console.log('DELELE',res.data);
       setmsg(`${id} is deleted successfully`);
       setreload(!reload)
 
     })
-    .catch((e) => console.log(e));
+    .catch((e) => console.log('DELETE',e));
 
   }
   useEffect(() => {
@@ -38,7 +38,7 @@ console.log('i am in useeffect of posts')
       setmsg('')
   }, [reload]);
   return (
-    <PostTable posts={state} />
+    <PostTable posts={state} handleDelete={handleDelete} />
     
   );
 }

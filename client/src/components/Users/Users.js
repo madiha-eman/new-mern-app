@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchAllPosts } from "../../store/apis";
 import DeleteModal from "../subComponents/DeleteModal";
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import Editable from "../Tables/Editable";
 
 function Users() {
@@ -22,12 +22,12 @@ function Users() {
   //   {name:'Shehla',email:'shehla@gmail.com',id:2},
   const [msg, setmsg] = useState('')
 
-  const handleDelete = (id) => {
+  const handleDelete = async(id) => {
     console.log(id)
-    axios.delete('http://localhost:4000/api/users/' + id)
+    axios.delete('http://localhost:4000/api/users/:id' + id)
       .then((res) => {
 
-        console.log(res.data);
+        console.log('not del',res.data);
 
         // console.log(res.data);
 
@@ -35,7 +35,7 @@ function Users() {
         history.push('/users')
 
       })
-      .catch((e) => console.log(e));
+      .catch((e) => console.log('errrr',e));
 
 
   }
@@ -50,7 +50,11 @@ function Users() {
   }, []);
 
   return (
-    <Editable rows={state} cols={cols} type='users' />
+    <div>
+    {msg}
+    <Editable rows={state} cols={cols} type='users' onClick={(_id)=>handleDelete()}/>
+    <button onClick={()=>handleDelete()}>add</button>
+    </div>
   );
 }
 export default Users;

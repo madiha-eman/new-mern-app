@@ -12,18 +12,18 @@ function AddPost() {
   const history = useHistory();
 const [token, settoken] = useState('')
 useEffect(()=>{
-const checkOnlineUser = JSON.parse(localStorage.getItem('userData'))
-
-if(checkOnlineUser == null){
-  history.push('/login');
-}else {
-   let { id, name, email, token} = checkOnlineUser;
-   settoken(token)
-   if(!token)  history.push('/login');
-setuser(name)
-
-}
-},[])
+  const checkOnlineUser = JSON.parse(localStorage.getItem('userData'))
+  
+  if(checkOnlineUser == null){
+    history.push('/login');
+  }else {
+     let { id, name, email, token, isAdmin} = checkOnlineUser;
+     settoken(token)
+     if(!token)  history.push('/login');
+  setuser(name)
+  
+  }
+  },[])
 
   const handleSubmit = (e) => {
     e.preventDefault()

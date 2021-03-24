@@ -38,7 +38,7 @@ const tableIcons = {
   };
 
 
-export default function PostTable({posts}) {
+export default function PostTable({posts, handleDelete}) {
     const [open, setOpen] = useState(false);
  
     const [columns, setColumns] = useState([
@@ -92,14 +92,15 @@ export default function PostTable({posts}) {
             }),
           onRowDelete: oldData =>
             new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataDelete = [...data];
-                const index = oldData.tableData.id;
-                dataDelete.splice(index, 1);
-                setData([...dataDelete]);
-                
-                resolve()
-              }, 1000)
+              
+              // setTimeout(() => {
+              //   const dataDelete = [...data];
+              //   const index = oldData.tableData.id;
+              //   dataDelete.splice(index, 1);
+              //   setData([...dataDelete]);
+              //   handleDelete(()=>handleDelete(dataDelete._id));                
+              //   resolve()
+              // }, )
             }),
         }}
       />

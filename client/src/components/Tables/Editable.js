@@ -42,6 +42,7 @@ function Editable({rows, cols, type}) {
     const { useState } = React;
   
     const [columns, setColumns] = useState(cols);
+    
   
     const [data, setData] = useState([]);
 
@@ -59,12 +60,13 @@ function Editable({rows, cols, type}) {
 
 
       }
-      const usr= await axios.put(`http://localhost:4000/api/${type}/update/${id}`,myUpdatedData)
-      console.log(usr);
+      const user= await axios.put(`http://localhost:4000/api/${type}/update/${id}`,myUpdatedData)
+      console.log(user);
     }
     const handleDelete = async (id)=>{
-      const usr= await axios.delete(`http://localhost:4000/api/${type}/${id}`)
-      console.log(usr)
+      console.log(id)
+      const user= await axios.delete(`http://localhost:4000/api/${type}/${id}`)
+      console.log('why',user)
     }
     useEffect(()=>{
         setData(rows)
@@ -121,7 +123,7 @@ function Editable({rows, cols, type}) {
               setTimeout(() => {
                 const dataDelete = [...data];
                 const index = oldData.tableData.id;
-                dataDelete.splice(index, 1);
+                dataDelete.splice(index, 0);
                 setData([...dataDelete]);
                 handleDelete(dataDelete[index]._id);
 
@@ -130,6 +132,7 @@ function Editable({rows, cols, type}) {
             }),
         }}
       />
+      <button onClick={()=>handleDelete()}>sss</button>
       </div>
     )
   }
